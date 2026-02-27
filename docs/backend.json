@@ -1,0 +1,275 @@
+{
+  "entities": {
+    "Product": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Product",
+      "type": "object",
+      "description": "Represents a food product that users can review and vote on for safety and quality. Products become 'Pariposhan Verified' after administrator approval based on community submissions.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Product entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the food product."
+        },
+        "description": {
+          "type": "string",
+          "description": "A detailed description of the product, including ingredients or usage."
+        },
+        "brand": {
+          "type": "string",
+          "description": "The brand name of the product."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL to an image of the product.",
+          "format": "uri"
+        },
+        "categoryIds": {
+          "type": "array",
+          "description": "References to ProductCategories. (Relationship: ProductCategory N:N Product)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "averageRating": {
+          "type": "number",
+          "description": "The calculated average rating from all approved reviews for this product."
+        },
+        "totalReviews": {
+          "type": "number",
+          "description": "The total number of approved reviews for this product."
+        },
+        "isVerified": {
+          "type": "boolean",
+          "description": "Indicates if the product has been approved by an admin as 'Verified Safe & Community Favorite'."
+        },
+        "dateAdded": {
+          "type": "string",
+          "description": "The timestamp when the product was first added to the system.",
+          "format": "date-time"
+        },
+        "adminNotes": {
+          "type": "string",
+          "description": "Internal notes from administrators regarding the product's compliance or verification status."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "brand",
+        "isVerified",
+        "dateAdded"
+      ]
+    },
+    "ProductCategory": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ProductCategory",
+      "type": "object",
+      "description": "Defines categories for organizing food products, enabling users to filter and discover relevant items.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Product Category entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the category (e.g., 'Dairy', 'Fresh Produce', 'Packaged Goods')."
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the product category."
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "ProductReview": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ProductReview",
+      "type": "object",
+      "description": "Represents a user's review and rating for a specific product, awaiting or having undergone moderation in the Community Review Queue.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Product Review entity."
+        },
+        "productId": {
+          "type": "string",
+          "description": "Reference to the Product being reviewed. (Relationship: Product 1:N ProductReview)"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the UserProfile who submitted the review. (Relationship: UserProfile 1:N ProductReview)"
+        },
+        "rating": {
+          "type": "number",
+          "description": "The numerical rating given by the user (e.g., 1-5 stars)."
+        },
+        "comment": {
+          "type": "string",
+          "description": "The user's written comment or feedback on the product."
+        },
+        "submissionDate": {
+          "type": "string",
+          "description": "The timestamp when the review was submitted.",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "description": "The current moderation status of the review (e.g., 'pending', 'approved', 'rejected')."
+        },
+        "adminNotes": {
+          "type": "string",
+          "description": "Internal notes from administrators regarding the moderation decision for this review."
+        },
+        "likesCount": {
+          "type": "number",
+          "description": "The number of likes this product review has received from other users."
+        },
+        "reportCount": {
+          "type": "number",
+          "description": "The number of times this product review has been reported by users for inappropriate content."
+        }
+      },
+      "required": [
+        "id",
+        "productId",
+        "userId",
+        "rating",
+        "comment",
+        "submissionDate",
+        "status"
+      ]
+    },
+    "ProductPollVote": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ProductPollVote",
+      "type": "object",
+      "description": "Represents a user's vote in a poll related to a product, contributing to its community standing and awaiting moderation.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Product Poll Vote entity."
+        },
+        "productId": {
+          "type": "string",
+          "description": "Reference to the Product the vote is about. (Relationship: Product 1:N ProductPollVote)"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the UserProfile who cast the vote. (Relationship: UserProfile 1:N ProductPollVote)"
+        },
+        "voteChoice": {
+          "type": "string",
+          "description": "The user's choice in the poll (e.g., 'Safe', 'Unsafe', 'Neutral')."
+        },
+        "submissionDate": {
+          "type": "string",
+          "description": "The timestamp when the vote was cast.",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "description": "The current moderation status of the vote (e.g., 'pending', 'approved', 'rejected')."
+        }
+      },
+      "required": [
+        "id",
+        "productId",
+        "userId",
+        "voteChoice",
+        "submissionDate",
+        "status"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/products/{productId}",
+        "definition": {
+          "entityName": "Product",
+          "schema": {
+            "$ref": "#/backend/entities/Product"
+          },
+          "description": "Main collection for all food products. The `isVerified` field determines if it's considered 'GoodKart Verified' (true) or part of the 'Community Review Queue' (false). This status is directly available on the document, supporting Authorization Independence for product visibility rules.",
+          "params": [
+            {
+              "name": "productId",
+              "description": "Unique identifier for the product."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/product_categories/{categoryId}",
+        "definition": {
+          "entityName": "ProductCategory",
+          "schema": {
+            "$ref": "#/backend/entities/ProductCategory"
+          },
+          "description": "Collection for defining and managing product categories. Publicly readable.",
+          "params": [
+            {
+              "name": "categoryId",
+              "description": "Unique identifier for the product category."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/products/{productId}/product_reviews/{reviewId}",
+        "definition": {
+          "entityName": "ProductReview",
+          "schema": {
+            "$ref": "#/backend/entities/ProductReview"
+          },
+          "description": "Subcollection storing user product reviews for a specific product. The `status` field ('pending', 'approved', 'rejected') and `userId` are critical for authorization. All necessary authorization context (`productId`, `userId`, `status`) is present within the document, ensuring Authorization Independence. Used in conjunction with collection group queries for admin moderation and product-specific display.",
+          "params": [
+            {
+              "name": "productId",
+              "description": "Unique identifier of the parent product."
+            },
+            {
+              "name": "reviewId",
+              "description": "Unique identifier for the product review."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/products/{productId}/product_poll_votes/{voteId}",
+        "definition": {
+          "entityName": "ProductPollVote",
+          "schema": {
+            "$ref": "#/backend/entities/ProductPollVote"
+          },
+          "description": "Subcollection storing user votes for product polls related to a specific product. The `status` field ('pending', 'approved', 'rejected') and `userId` are critical for authorization. All necessary authorization context (`productId`, `userId`, `status`) is present within the document, ensuring Authorization Independence. Used in conjunction with collection group queries for admin moderation and product-specific display.",
+          "params": [
+            {
+              "name": "productId",
+              "description": "Unique identifier of the parent product."
+            },
+            {
+              "name": "voteId",
+              "description": "Unique identifier for the product poll vote."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure for Pariposhan's GoodKart feature is designed to adhere to the core principles of Authorization Independence, Structural Segregation, and DBAC, while facilitating efficient queries and debuggable security rules.The primary strategy revolves around embedding all necessary authorization context directly within each document and using structural segregation where security postures significantly differ.\n\n**Authorization Independence:**\n*   **Products:** Each `Product` document at `/products/{productId}` includes an `isVerified` boolean field. This field directly dictates whether a product is displayed in the 'GoodKart Verified' section (`true`) or the 'Community Review Queue' (`false`). This eliminates the need for security rules to `get()` a parent document to determine a product's verification status, making authorization atomic and simple (e.g., `allow read: if resource.data.isVerified == true;`).\n*   **Product Reviews & Poll Votes:** Each `ProductReview` and `ProductPollVote` document, nested under `/products/{productId}/product_reviews/{reviewId}` and `/products/{productId}/product_poll_votes/{voteId}` respectively, contains its own `userId` and `status` fields. The `userId` identifies the owner, and the `status` (e.g., 'pending', 'approved', 'rejected') dictates its visibility and modifiability. All authorization checks (e.g., 'is this my review?', 'is this review approved?') can be performed solely using fields within the `request.resource.data` or `resource.data` object. This entirely bypasses any `get()` calls to parent `Product` documents for review/vote authorization, ensuring authorization independence.\n\n**Querying for Authorization Posture (QAPs - Rules are not Filters):**\n*   **Product Visibility:** For the public 'GoodKart Verified' section, client queries will explicitly filter products by `isVerified: true`. Security rules for `/products` will enforce this `where('isVerified', '==', true)` constraint on `list` operations for non-admin users, preventing unauthorized data exposure and ensuring all listed items conform to the security posture.\n*   **Community Review Queue (for Admins):** Admins can access all `Product` documents (including `isVerified: false`) for moderation. For `ProductReview` and `ProductPollVote` moderation, admins will utilize **Collection Group Queries**. They will query the `product_reviews` and `product_poll_votes` subcollections across all products, specifically filtering for `status: 'pending'`. Security rules will permit collection group `list` operations for authenticated admins without requiring specific `where` clauses, as admins have full read access to these pending items. This allows admins to efficiently view all pending reviews/votes from a single dashboard.\n*   **Public Product Page Reviews:** When displaying reviews/votes for a specific product, client queries will explicitly filter by `status: 'approved'`. Security rules for `product_reviews` and `product_poll_votes` subcollections will enforce `query.where('status', '==', 'approved')` for public `list` operations, ensuring only approved content is displayed.\n\n**Structural Segregation & Access Modeling:**\n*   **Products (`/products`):** A single top-level collection holds all products. The `isVerified` flag efficiently segregates them logically, catering to both the 'Community Review Queue' view (for unverified products by admins) and the 'GoodKart Verified' view (for verified products by everyone). This avoids collection duplication while maintaining clear access based on `isVerified` status.\n*   **Product Categories (`/product_categories`):** A simple top-level collection for static, publicly readable category data.\n*   **Product Reviews & Poll Votes (`/products/{productId}/product_reviews` & `/products/{productId}/product_poll_votes`):** These are nested subcollections under their respective `Product` documents. This hierarchical structure is ideal for queries focused on a single product (e.g., 'show all approved reviews for product X'). The `userId` and `status` fields enable fine-grained access control within these homogenous collections, supporting user-specific actions (e.g., a user editing their own 'pending' review) and admin moderation.\n\n**Admin Roles (DBAC):** Although not explicitly listed in the `firestorePaths` due to schema constraints (lacking a `UserProfile` entity to derive `$ref`), the design mandates a dedicated top-level collection for admin roles (e.g., `/roles_admin/{uid}`). The *existence* of a document with a user's `uid` in this collection would grant administrator privileges, adhering to the 'Existence over Content' principle for DBAC and ensuring robust, debuggable admin checks in security rules (e.g., `allow read: if exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));`). This ensures that admin status is not denormalized onto user profiles, minimizing potential security risks associated with data synchronization."
+  }
+}

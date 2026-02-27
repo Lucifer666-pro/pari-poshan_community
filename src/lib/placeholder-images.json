@@ -1,0 +1,76 @@
+{
+  "placeholderImages": [
+    {
+      "id": "brand-logo",
+      "description": "Pariposhan official brand logo featuring a triangular thali design",
+      "imageUrl": "https://lh3.googleusercontent.com/d/1Zg4Y_y_-E0JXszgVloPT7skAEqMdMAcz",
+      "imageHint": "thali logo"
+    },
+    {
+      "id": "chatbot-icon",
+      "description": "Pariposhan Food Safety Chatbot custom icon",
+      "imageUrl": "https://lh3.googleusercontent.com/d/1DHwpcRCli-lQMpG-vOUtTXzeZAQ5cIeQ",
+      "imageHint": "chatbot icon"
+    },
+    {
+      "id": "food-safety-1",
+      "description": "Food safety verification",
+      "imageUrl": "https://images.unsplash.com/photo-1551884170-09fb70a3a2ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmb29kJTIwc2FmZXR5fGVufDB8fHx8MTc3MTkxMjcyMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "food safety"
+    },
+    {
+      "id": "label-edu-1",
+      "description": "Reading nutritional labels",
+      "imageUrl": "https://images.unsplash.com/photo-1763668331599-487470fb85b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxudXRyaXRpb25lYWwlbGFiZWx8ZW58MHx8fHwxNzcxOTEyNzIyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "nutrition label"
+    },
+    {
+      "id": "recipe-1",
+      "description": "Healthy meal preparation",
+      "imageUrl": "https://images.unsplash.com/photo-1487376318617-f43c7b41e2e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxoZWFsdGh5JTIwcmVjaXBlfGVufDB8fHx8MTc3MTkxMjcyMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy recipe"
+    },
+    {
+      "id": "allergy-1",
+      "description": "Common food allergens",
+      "imageUrl": "https://images.unsplash.com/photo-1619278874214-7eb5d1b7498a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmb29kJTIwYWxsZXJneXxlbnwwfHx8fDE3NzE5MTI3MjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "food allergy"
+    },
+    {
+      "id": "news-lab-1",
+      "description": "Laboratory food testing",
+      "imageUrl": "https://images.unsplash.com/photo-1579152276508-25098939634e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmb29kJTIwbGFifGVufDB8fHx8MTc3MTkxMjcyMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "food lab"
+    },
+    {
+      "id": "news-govt-1",
+      "description": "Government official press release",
+      "imageUrl": "https://images.unsplash.com/photo-1521791136064-7986c29596ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxnb3Zlcm5tZW50fGVufDB8fHx8MTc3MTkxMjcyMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "government press"
+    },
+    {
+      "id": "quiz-science",
+      "description": "Microscopic view of biology",
+      "imageUrl": "https://images.unsplash.com/photo-1532187863486-abf9d39d9992?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzY2llbmNlfGVufDB8fHx8MTc3MTkxMzkyMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "science biology"
+    },
+    {
+      "id": "quiz-ecology",
+      "description": "Lush green forest ecosystem",
+      "imageUrl": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlY29sb2d5fGVufDB8fHx8MTc3MTkxMzkyMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ecology forest"
+    },
+    {
+      "id": "quiz-health",
+      "description": "Fresh vibrant vegetables",
+      "imageUrl": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoZWFsdGh5JTIwZm9vZHxlbnwwfHx8fDE3NzE5MTM5MjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy food"
+    },
+    {
+      "id": "quiz-nutrition",
+      "description": "Balanced healthy meal plate",
+      "imageUrl": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxudXRyaXRpb258ZW58MHx8fHwxNzcxOTE0NDc5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "nutrition meal"
+    }
+  ]
+}
